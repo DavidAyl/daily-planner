@@ -1,5 +1,8 @@
 var containerEl = document.querySelector(".container");
-
+var currentDay = document.getElementById('currentDay')
+var currentTime = moment().format('LLL');
+console.log(currentTime)
+currentDay.textContent += currentTime
 for (var i = 8; i <= 15; i++) {
   var row = document.createElement("div");
   row.classList.add("row");
@@ -9,6 +12,22 @@ for (var i = 8; i <= 15; i++) {
   description.classList.add("col-10", "description");
   var saveBtn = document.createElement("button");
   saveBtn.classList.add("col-1", "saveBtn");
-  row.appendChild(hour, description, saveBtn);
+  row.appendChild(hour);
+  row.appendChild(description)
+  row.appendChild(saveBtn)
   containerEl.appendChild(row);
 }
+
+
+
+var textArea = document.querySelector('.description')
+var saveBtn = document.querySelector('.saveBtn')
+
+textArea.value = JSON.parse(localStorage.getItem("inputValue"))
+
+var inputValue = textArea.value
+
+saveBtn.addEventListener('click', function(event) {
+event.preventDefault()
+localStorage.setItem('inputValue', JSON.stringify(textArea.value));
+})
