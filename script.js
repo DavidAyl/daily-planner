@@ -18,16 +18,18 @@ for (var i = 8; i <= 15; i++) {
   containerEl.appendChild(row);
 }
 
-
-
 var textArea = document.querySelector('.description')
-var saveBtn = document.querySelector('.saveBtn')
-
-textArea.value = JSON.parse(localStorage.getItem("inputValue"))
 
 var inputValue = textArea.value
 
-saveBtn.addEventListener('click', function(event) {
-event.preventDefault()
-localStorage.setItem('inputValue', JSON.stringify(textArea.value));
-})
+var saveBtns = document.querySelectorAll("button");
+
+saveBtns.forEach(function (button) {
+  button.addEventListener('click', function(event) {
+    event.preventDefault()
+    localStorage.setItem('inputValue', JSON.stringify(textArea.value));
+    })
+  })
+
+textArea.value = JSON.parse(localStorage.getItem("inputValue"))
+
